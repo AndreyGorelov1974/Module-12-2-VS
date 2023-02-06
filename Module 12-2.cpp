@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <math.h>
+#include <ctime>
 
 void heapify(int arr[], int n, int i)
 {
@@ -39,6 +40,23 @@ void heapify(int arr[], int n, int i)
     }
 }
 
+// функция вывода в иде кучи
+void printHeap(float arr[], int height, int sizeArr)
+{
+    std::cout << arr[0] << std::endl;
+    for (int i = 1; i < height; i++)
+    {
+        for (int j = pow(2, i) - 1; j <= pow(2, i + 1) - 2; j++)
+        {
+            if (j < sizeArr)
+            {
+                std::cout << arr[j] << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
 int main()
 {
 
@@ -52,10 +70,9 @@ int main()
 
     // генерация случайного массива
 
-    std::srand(std::time(NULL));
     for (int i = 0; i < sizeArr; i++)
     {
-        arr[i] = (std::rand() / RAND_MAX) * 100;
+        arr[i] = (float(std::rand()) / RAND_MAX) * 100;
     }
 
     for (int i = 0; i < sizeArr; i++)
@@ -67,16 +84,5 @@ int main()
 
 
     // вывод кучи
-    std::cout << arr[0] << std::endl;
-    for (int i = 1; i < heapHeight; i++)
-    {
-        for (int j = pow(2, i) - 1; j <= pow(2, i + 1) - 2; j++)
-        {
-            if (j < sizeArr)
-            {
-                std::cout << arr[j] << " ";
-            }
-        }
-        std::cout << std::endl;
-    }
+    printHeap(arr, heapHeight, sizeArr);
 }
