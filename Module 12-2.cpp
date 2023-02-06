@@ -14,10 +14,8 @@
 #include <iostream>
 #include <math.h>
 
-int heapify(int arr[], int n, int i)
+void heapify(int arr[], int n, int i)
 {
-
-
     int largest = i;
     // Инициализируем наибольший элемент как корень
     int l = 2 * i + 1; // левый = 2*i + 1
@@ -35,7 +33,6 @@ int heapify(int arr[], int n, int i)
     if (largest != i)
     {
         std::swap(arr[i], arr[largest]);
-
 
         // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
         heapify(arr, n, largest);
