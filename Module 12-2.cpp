@@ -43,14 +43,12 @@ void heapify(int arr[], int n, int i)
 int main()
 {
 
-    int arr[] = {4, 10, 3, 5, 1};
+    float arr[20];
 
     // задание начальных констант
     // размер массива
     int sizeArr = sizeof(arr) / sizeof(arr[0]);
-    // высота кучи
-    int heapHeight = log(sizeArr) / log(2) + 1;
-
+    
     // вывод кучи
     std::cout << arr[0] << std::endl;
     for (int i = 1; i < heapHeight; i++)
