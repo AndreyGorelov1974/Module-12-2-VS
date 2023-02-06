@@ -14,6 +14,35 @@
 #include <iostream>
 #include <math.h>
 
+int heapify(int arr[], int n, int i)
+{
+
+
+    int largest = i;
+    // Инициализируем наибольший элемент как корень
+    int l = 2 * i + 1; // левый = 2*i + 1
+    int r = 2 * i + 2; // правый = 2*i + 2
+
+    // Если левый дочерний элемент больше корня
+    if (l < n && arr[l] > arr[largest])
+        largest = l;
+
+    // Если правый дочерний элемент больше, чем самый большой элемент на данный момент
+    if (r < n && arr[r] > arr[largest])
+        largest = r;
+
+    // Если самый большой элемент не корень
+    if (largest != i)
+    {
+        std::swap(arr[i], arr[largest]);
+
+
+        // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
+        heapify(arr, n, largest);
+    }
+}
+
+
 int main()
 {
 
@@ -21,7 +50,7 @@ int main()
 
     // задание начальных констант
     // размер массива
-    int sizeArr = 5;
+    int sizeArr = sizeof(arr) / sizeof(arr[0]);
     // высота кучи
     int heapHeight = log(sizeArr) / log(2) + 1;
 
@@ -39,11 +68,13 @@ int main()
         std::cout << std::endl;
     }
 
+
+
+    // преобразования массива в max-heap
     for (int k = 1; k < heapHeight; k++)
     {
         for (int i = sizeArr / 2 - 1; i >= 0; i--)
         {
-
             // Инициализируем наибольший элемент как корень
             int largest = i;
             int l = 2 * i + 1; // левый = 2*i + 1
