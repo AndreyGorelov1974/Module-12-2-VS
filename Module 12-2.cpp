@@ -18,6 +18,35 @@
 int counterHeap = 0;
 int counterBubble = 0;
 
+// функция вывода в виде кучи
+void printHeap(float arr[], int height, int sizeArr)
+{
+    std::cout << arr[0] << std::endl;
+    for (int i = 1; i < height; i++)
+    {
+        for (int j = pow(2, i) - 1; j <= pow(2, i + 1) - 2; j++)
+        {
+            if (j < sizeArr)
+            {
+                std::cout << arr[j] << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+// функция вывода массива размером sizeArr
+void printArray(float arr[], int sizeArr)
+{
+    for (int i = 0; i < sizeArr; i++)
+    {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+
 // Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является
 // индексом в arr[]. n - размер кучи
 void heapify(float arr[], int n, int i)
@@ -86,42 +115,29 @@ void mergeSort(float arr[], int n)
 
     n--;
 
-    for (int i = 0; i < n - 3; i + 2)
+    for (int i = 0; i < n - 2; i += 2 )
     {
         if (arr[i] > arr[i + 1])
         {
             std::swap(arr[i], arr[i + 1]);
         }
     }
-}
+    printArray(arr, 9);
 
-// функция вывода в виде кучи
-void printHeap(float arr[], int height, int sizeArr)
-{
-    std::cout << arr[0] << std::endl;
-    for (int i = 1; i < height; i++)
+    for (int i = 0; i < n - 4; i += 4)
     {
-        for (int j = pow(2, i) - 1; j <= pow(2, i + 1) - 2; j++)
+        for (int j = i; j < 2; j++)
         {
-            if (j < sizeArr)
+            if (arr[j] > arr[j + 2])
             {
-                std::cout << arr[j] << " ";
+                std::swap(arr[i], arr[i + 1]);
             }
         }
-        std::cout << std::endl;
     }
-    std::cout << std::endl;
+    printArray(arr, 9);
+
 }
 
-// функция вывода массива размером sizeArr
-void printArray(float arr[], int sizeArr)
-{
-    for (int i = 0; i < sizeArr; i++)
-    {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
-}
 
 int main()
 {
@@ -177,6 +193,8 @@ int main()
 
     std::cout << "Operation for sort buble: " << counterBubble << std::endl;
 
-    float arrM[9]{2, 5, 8, 3, 9, 1, 4, 7, 6};
+    float arrM[] = {2, 5, 8, 3, 9, 1, 4, 7, 6};
     mergeSort(arrM, 9);
+
+
 }
