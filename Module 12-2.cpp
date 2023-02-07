@@ -16,10 +16,11 @@
 #include <ctime>
 
 int counterHeap = 0;
+int counterBubble = 0;
+
 
 // Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является
 // индексом в arr[]. n - размер кучи
-
 void heapify(float arr[], int n, int i)
 {
 	int largest = i;
@@ -58,6 +59,21 @@ void heapSort(float arr[], int n)
 
 		// вызываем процедуру heapify на уменьшенной куче
 		heapify(arr, i, 0);
+	}
+}
+
+// Основная функция, выполняющая  сортировку пузырьком 
+void bubbleSort(float arr[], int n)
+{
+	// Двойной проход по массиву
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n - 1; j++) {
+			if (arr[j] > arr[j+1]) {
+				std::swap(arr[j], arr[j+1]);
+				counterBubble++;
+			}
+		}
 	}
 }
 
@@ -105,8 +121,8 @@ int main()
 
 	for (int i = 0; i < sizeArr; i++)
 	{
-		//arr[i] = (float(std::rand()) / RAND_MAX) * 100;
 		arr[i] = (float(std::rand()) / RAND_MAX) * 100;
+		//arr[i] = float(sizeArr - i);
 
 	}
 
@@ -129,7 +145,22 @@ int main()
 
 	std::cout << "Operation for sort heap: " << counterHeap << std::endl;
 
+	// генерация случайного массива
 
-	
+	for (int i = 0; i < sizeArr; i++)
+	{
+		arr[i] = (float(std::rand()) / RAND_MAX) * 100;
+
+	}
+
+	printArray(arr, sizeArr);
+
+	bubbleSort(arr, sizeArr);
+
+	printArray(arr, sizeArr);
+
+
+	std::cout << "Operation for sort buble: " << counterBubble << std::endl;
+
 
 }
