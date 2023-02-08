@@ -107,38 +107,6 @@ void bubbleSort(float arr[], int n)
     }
 }
 
-// Основная функция, выполняющая  сортировку слиянием
-void mergeSort(float arr[], int n)
-{
-    int step = 2;
-    int half = n;
-
-    n--;
-
-    for (int i = 0; i < n - 2; i += 2 )
-    {
-        if (arr[i] > arr[i + 1])
-        {
-            std::swap(arr[i], arr[i + 1]);
-        }
-    }
-    printArray(arr, 9);
-
-    for (int i = 0; i < n - 4; i += 4)
-    {
-        for (int j = i; j < 2; j++)
-        {
-            if (arr[j] > arr[j + 2])
-            {
-                std::swap(arr[i], arr[i + 1]);
-            }
-        }
-    }
-    printArray(arr, 9);
-
-}
-
-
 int main()
 {
 
@@ -192,9 +160,5 @@ int main()
     printArray(arr, sizeArr);
 
     std::cout << "Operation for sort buble: " << counterBubble << std::endl;
-
-    float arrM[] = {2, 5, 8, 3, 9, 1, 4, 7, 6};
-    mergeSort(arrM, 9);
-
-
+ 
 }
